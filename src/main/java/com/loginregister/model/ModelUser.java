@@ -98,7 +98,7 @@ public class ModelUser {
             ps.setString(2, apellidoUser);
             ps.setString(3, correoUser);
             ps.setString(4, passUser);
-            ps.setDate(5, new java.sql.Date (fechaRegUser.getTime()));
+            ps.setDate(5, new java.sql.Date(fechaRegUser.getTime()));
             ps.setInt(6, idTipoUser);
 
             int filasAfectadas = ps.executeUpdate();
@@ -125,13 +125,13 @@ public class ModelUser {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String queryValidacion = "SELECT * FROM USUARIOS WHERE correo = ? AND pass = ?";
+        String queryValidacion = "SELECT * FROM USUARIOS WHERE correo = (?) AND pass = (?)";
 
         try {
             connection = Conexion.getConnection();
             ps = connection.prepareStatement(queryValidacion);
-            ps.setString(1, getCorreoUser());
-            ps.setString(2, getPassUser());
+            ps.setString(1, correoUser);
+            ps.setString(2, passUser);
             rs = ps.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Credenciales correctas");

@@ -1,11 +1,11 @@
 package com.loginregister.view;
 
-import com.loginregister.controller.ControllerUser;
+import com.loginregister.controller.ControllerRegister;
 import java.util.Date;
 
 public class V_Register extends javax.swing.JFrame {
 
-    private final ControllerUser controllerUser;
+    private final ControllerRegister controllerUser;
 
     public String getNombre() {
         return txtNombre.getText();
@@ -34,7 +34,16 @@ public class V_Register extends javax.swing.JFrame {
     public V_Register() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.controllerUser = new ControllerUser();
+        this.controllerUser = new ControllerRegister();
+    }
+    
+    public void LimpiarCamposRegister(){
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCorreo.setText("");
+        txtPassword.setText("");
+        dateFechaReg.setDate(null);
+        cbxRol.setSelectedIndex(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,19 +59,25 @@ public class V_Register extends javax.swing.JFrame {
         cbxRol = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         dateFechaReg = new com.toedter.calendar.JDateChooser();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Register");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnRegistrarUsuario.setBackground(new java.awt.Color(51, 51, 51));
+        btnRegistrarUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
+        btnRegistrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarUsuario.setText("Registrar usuario");
+        btnRegistrarUsuario.setBorder(null);
         btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 130, 40));
+        jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 160, 40));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 160, 60));
@@ -89,6 +104,18 @@ public class V_Register extends javax.swing.JFrame {
         dateFechaReg.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha"));
         jPanel1.add(dateFechaReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 160, 50));
 
+        btnVolver.setBackground(new java.awt.Color(51, 51, 51));
+        btnVolver.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver.setText("Volver a Login");
+        btnVolver.setBorder(null);
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 160, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,6 +134,12 @@ public class V_Register extends javax.swing.JFrame {
         controllerUser.registrarUsuario(this);
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        dispose();
+        V_Login login = new V_Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -118,6 +151,7 @@ public class V_Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnRegistrarUsuario;
+    public javax.swing.JButton btnVolver;
     public javax.swing.JComboBox<String> cbxRol;
     public com.toedter.calendar.JDateChooser dateFechaReg;
     private javax.swing.JLabel jLabel1;

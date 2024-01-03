@@ -2,15 +2,14 @@ package com.loginregister.controller;
 
 import com.loginregister.model.ModelUser;
 import com.loginregister.view.V_Register;
-
 import java.sql.SQLException;
 import java.util.Date;
 
-public class ControllerUser {
+public class ControllerRegister {
 
     private final ModelUser modelUser;
 
-    public ControllerUser() {
+    public ControllerRegister() {
         this.modelUser = new ModelUser();
     }
 
@@ -24,8 +23,10 @@ public class ControllerUser {
 
         try {
             modelUser.AgregarUsuario(nombre, apellido, correo, contraseña, fecha, idTipoUsuario);
+            registroView.LimpiarCamposRegister();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
     }
 }
