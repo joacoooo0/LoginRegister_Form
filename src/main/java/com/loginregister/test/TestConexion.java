@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class TestConexion {
 
-    public void TestConexion() {
+    public static void main(String[] args) throws SQLException {
         Connection connection = null;
         try {
             connection = Conexion.getConnection();
@@ -20,6 +20,10 @@ public class TestConexion {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+//finally {
+//            if (connection != null) {
+//                connection.close();
+//            }
+//        }
     }
-;
 }
