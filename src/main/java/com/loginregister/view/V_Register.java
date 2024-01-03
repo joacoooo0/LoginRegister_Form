@@ -1,18 +1,40 @@
 package com.loginregister.view;
 
-import com.loginregister.model.ModelUser;
-import java.sql.SQLException;
+import com.loginregister.controller.ControllerUser;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class V_Register extends javax.swing.JFrame {
 
-    ModelUser modelUsuario = new ModelUser();
+    private final ControllerUser controllerUser;
+
+    public String getNombre() {
+        return txtNombre.getText();
+    }
+
+    public String getApellido() {
+        return txtApellido.getText();
+    }
+
+    public String getCorreo() {
+        return txtCorreo.getText();
+    }
+
+    public String getPass() {
+        return txtPassword.getText();
+    }
+
+    public Date getFecha() {
+        return dateFechaReg.getDate();
+    }
+
+    public String getRol() {
+        return cbxRol.getSelectedItem().toString();
+    }
 
     public V_Register() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.controllerUser = new ControllerUser();
     }
 
     @SuppressWarnings("unchecked")
@@ -82,19 +104,7 @@ public class V_Register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
-        //Datos
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String correo = txtCorreo.getText();
-        String pass = txtPassword.getText();
-        Date fecha = dateFechaReg.getDate();
-        int rol = Integer.parseInt(cbxRol.getSelectedItem().toString());
-
-        try {
-            modelUsuario.AgregarUsuario(nombre, apellido, correo, pass, fecha, rol);
-        } catch (SQLException ex) {
-            Logger.getLogger(V_Register.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        controllerUser.registrarUsuario(this);
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
     public static void main(String args[]) {
@@ -107,7 +117,7 @@ public class V_Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrarUsuario;
+    public javax.swing.JButton btnRegistrarUsuario;
     public javax.swing.JComboBox<String> cbxRol;
     public com.toedter.calendar.JDateChooser dateFechaReg;
     private javax.swing.JLabel jLabel1;
