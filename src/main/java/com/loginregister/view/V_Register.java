@@ -108,13 +108,13 @@ public class V_Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarUsuario;
-    private javax.swing.JComboBox<String> cbxRol;
-    private com.toedter.calendar.JDateChooser dateFechaReg;
+    public javax.swing.JComboBox<String> cbxRol;
+    public com.toedter.calendar.JDateChooser dateFechaReg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPassword;
+    public javax.swing.JTextField txtApellido;
+    public javax.swing.JTextField txtCorreo;
+    public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
