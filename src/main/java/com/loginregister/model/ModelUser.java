@@ -90,16 +90,16 @@ public class ModelUser {
     public void AgregarUsuario(String nombreUser, String apellidoUser, String correoUser, String passUser, Date fechaRegUser, int idTipoUser) throws SQLException {
         Connection connection = null;
         PreparedStatement ps = null;
-        String query = "INSERT INTO USUARIOS VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO USUARIOS (nombre, apellido, correo, pass, fechareg, idTipo) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             connection = Conexion.getConnection();
             ps = connection.prepareStatement(query);
-            ps.setString(1, getNombreUser());
-            ps.setString(2, getApellidoUser());
-            ps.setString(3, getCorreoUser());
-            ps.setString(4, getPassUser());
-            ps.setDate(5, (java.sql.Date) getFechaRegUser());
-            ps.setInt(6, getIdTipoUser());
+            ps.setString(1, nombreUser);
+            ps.setString(2, apellidoUser);
+            ps.setString(3, correoUser);
+            ps.setString(4, passUser);
+            ps.setDate(5, new java.sql.Date (fechaRegUser.getTime()));
+            ps.setInt(6, idTipoUser);
 
             int filasAfectadas = ps.executeUpdate();
 

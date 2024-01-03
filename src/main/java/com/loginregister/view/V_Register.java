@@ -1,6 +1,14 @@
 package com.loginregister.view;
 
+import com.loginregister.model.ModelUser;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class V_Register extends javax.swing.JFrame {
+
+    ModelUser modelUsuario = new ModelUser();
 
     public V_Register() {
         initComponents();
@@ -19,6 +27,7 @@ public class V_Register extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         cbxRol = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        dateFechaReg = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -26,6 +35,11 @@ public class V_Register extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnRegistrarUsuario.setText("Registrar usuario");
+        btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarUsuarioActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 130, 40));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
@@ -40,7 +54,7 @@ public class V_Register extends javax.swing.JFrame {
         txtCorreo.setBorder(javax.swing.BorderFactory.createTitledBorder("Correo"));
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 160, 60));
 
-        cbxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
         cbxRol.setBorder(javax.swing.BorderFactory.createTitledBorder("Rol"));
         jPanel1.add(cbxRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 160, 60));
 
@@ -48,6 +62,10 @@ public class V_Register extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTER");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 220, 40));
+
+        dateFechaReg.setBackground(new java.awt.Color(255, 255, 255));
+        dateFechaReg.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha"));
+        jPanel1.add(dateFechaReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 160, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,6 +81,22 @@ public class V_Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
+        //Datos
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String correo = txtCorreo.getText();
+        String pass = txtPassword.getText();
+        Date fecha = dateFechaReg.getDate();
+        int rol = Integer.parseInt(cbxRol.getSelectedItem().toString());
+
+        try {
+            modelUsuario.AgregarUsuario(nombre, apellido, correo, pass, fecha, rol);
+        } catch (SQLException ex) {
+            Logger.getLogger(V_Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -75,6 +109,7 @@ public class V_Register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarUsuario;
     private javax.swing.JComboBox<String> cbxRol;
+    private com.toedter.calendar.JDateChooser dateFechaReg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtApellido;
